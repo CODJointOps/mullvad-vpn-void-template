@@ -27,11 +27,11 @@ do_install() {
     vmkdir /usr/share/zsh/site-functions
 
     vmkdir /etc/sv/mullvad
-    echo '#!/bin/sh' > ${DESTDIR}/etc/sv/mullvad/run.sh
-    echo 'exec 2>&1' >> ${DESTDIR}/etc/sv/mullvad/run.sh
-    echo 'sv check dbus > /dev/null || exit 1' >> ${DESTDIR}/etc/sv/mullvad/run.sh
-    echo 'exec /usr/bin/mullvad-daemon -v --disable-stdout-timestamps' >> ${DESTDIR}/etc/sv/mullvad/run.sh
-    chmod 755 ${DESTDIR}/etc/sv/mullvad/run.sh
+    echo '#!/bin/sh' > ${DESTDIR}/etc/sv/mullvad/run
+    echo 'exec 2>&1' >> ${DESTDIR}/etc/sv/mullvad/run
+    echo 'sv check dbus > /dev/null || exit 1' >> ${DESTDIR}/etc/sv/mullvad/run
+    echo 'exec /usr/bin/mullvad-daemon -v --disable-stdout-timestamps' >> ${DESTDIR}/etc/sv/mullvad/run
+    chmod 755 ${DESTDIR}/etc/sv/mullvad/run
 
     vcopy usr/bin/* /usr/bin/
     vcopy usr/lib/systemd/system/* /usr/lib/systemd/system/
