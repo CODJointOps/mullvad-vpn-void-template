@@ -1,0 +1,45 @@
+pkgname=mullvad-vpn
+version=2023.6
+revision=1
+archs="x86_64"
+maintainer="Wizzard <rich@bandaholics.cash>"
+short_desc="mullvad"
+homepage="https://mullvad.net/"
+license="LicenseType"
+distfiles="https://mullvad.net/media/app/MullvadVPN-${version}_amd64.deb"
+checksum=22113ddcd5d7f22c25beca3e7a2f706d5c8924bb648eb65ff2a078dc066b7bee
+hostmakedepends="tar xz"
+
+do_extract() {
+    ar x ${XBPS_SRCDISTDIR}/${pkgname}-${version}/MullvadVPN-${version}_amd64.deb
+    tar xf data.tar.xz -C ${wrksrc}
+    mv ${wrksrc}/opt/Mullvad\ VPN ${wrksrc}/opt/MullvadVPN
+}
+
+do_install() {
+    vmkdir /usr/bin
+    vmkdir /usr/lib/systemd/system
+    vmkdir /usr/share/bash-completion/completions
+    vmkdir /usr/share/fish/vendor_completions.d
+    vmkdir /usr/share/icons/hicolor
+    vmkdir /usr/share/applications
+    vmkdir /usr/share/doc/mullvad-vpn
+    vmkdir /usr/share/zsh/site-functions
+
+    vcopy usr/bin/* /usr/bin/
+    vcopy usr/lib/systemd/system/* /usr/lib/systemd/system/
+    vcopy usr/share/icons/hicolor/* /usr/share/icons/hicolor/
+    vcopy usr/share/applications/* /usr/share/applications/
+    vcopy usr/share/doc/mullvad-vpn/* /usr/share/doc/mullvad-vpn/
+    vcopy usr/share/bash-completion/completions/* /usr/share/bash-completion/completions/
+    vcopy usr/share/fish/vendor_completions.d/* /usr/share/fish/vendor_completions.d/
+
+    vmkdir /usr/share/zsh/site-functions
+
+    mkdir -p ${DESTDIR}/opt/Mullvad\ VPN
+    cp -a ${wrksrc}/opt/Mullvad\ VPN/* ${DESTDIR}/opt/Mullvad\ VPN/
+}
+
+pkg_install() {
+    vmove usr/local/share/zsh/site-functions/*
+}
