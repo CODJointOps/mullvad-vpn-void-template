@@ -1,5 +1,5 @@
 pkgname=mullvad-vpn
-version=2025.3
+version=2025.5
 revision=1
 archs="x86_64"
 maintainer="Wizzard <rich@bandaholics.cash>"
@@ -7,7 +7,7 @@ short_desc="Mullvad VPN client"
 homepage="https://mullvad.net/"
 license="LicenseType"
 distfiles="https://cdn.mullvad.net/app/desktop/releases/${version}/MullvadVPN-${version}_amd64.deb"
-checksum=c842c3741a1af3f678b6d13fcd1eb6e3a44194dceae183d6a378dc616b05e8ce
+checksum=9fa08d6e21637aa3a04fbd97d88282382a7186fef27d56f5e5d8fccb5f7f5e5d
 hostmakedepends="tar xz"
 
 do_extract() {
