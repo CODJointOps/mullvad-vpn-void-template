@@ -1,6 +1,6 @@
 pkgname=mullvad-vpn
 version=2025.7
-revision=1
+revision=2
 archs="x86_64"
 maintainer="Wizzard <rich@bandaholics.cash>"
 short_desc="Mullvad VPN client"
@@ -45,9 +45,7 @@ do_install() {
 
     mkdir -p ${DESTDIR}/opt/MullvadVPN
     cp -a ${wrksrc}/opt/MullvadVPN/* ${DESTDIR}/opt/MullvadVPN/
-
-    # Exclude apisocks5 completely
-    rm -f ${DESTDIR}/opt/MullvadVPN/resources/apisocks5
+    ln -sf /opt/MullvadVPN ${DESTDIR}/opt/Mullvad\ VPN
 }
 
 pkg_install() {
