@@ -61,4 +61,5 @@ jobs:
           git config user.email "rich@bandaholics.cash"
           git add template
           git commit -m "Update to v${{ steps.get_release.outputs.version }} [auto]"
+          git pull --rebase origin master
           git push
