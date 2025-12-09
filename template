@@ -1,6 +1,6 @@
 pkgname=mullvad-vpn
 version=2025.14
-revision=2
+revision=1
 archs="x86_64"
 maintainer="Wizzard <rich@bandaholics.cash>"
 short_desc="Mullvad VPN client"
