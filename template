@@ -1,17 +1,28 @@
 pkgname=mullvad-vpn
 version=2025.14
-revision=1
+revision=2
 archs="x86_64* aarch64*"
 maintainer="Wizzard <rich@bandaholics.cash>"
 short_desc="Mullvad VPN client"
 homepage="https://mullvad.net/"
 license="LicenseType"
-distfiles="https://github.com/mullvad/mullvadvpn-app/releases/download/${version}/MullvadVPN-${version}_amd64.deb"
-checksum=247b981e2e2e047ccca296b8e62a70b1dc7fdcec7f17137795884100240e0a41
 hostmakedepends="tar xz"
 
+case "${XBPS_TARGET_MACHINE}" in
+    x86_64*)
+        _deb_arch=amd64
+        checksum=247b981e2e2e047ccca296b8e62a70b1dc7fdcec7f17137795884100240e0a41
+        ;;
+    aarch64*)
+        _deb_arch=arm64
+        checksum=9a20a1d71eac09c01b83d897ed227361cc49f0321054d76b83a6f7f61b7c813c
+        ;;
+esac
+
+distfiles="https://github.com/mullvad/mullvadvpn-app/releases/download/${version}/MullvadVPN-${version}_${_deb_arch}.deb"
+
 do_extract() {
-    ar x ${XBPS_SRCDISTDIR}/${pkgname}-${version}/MullvadVPN-${version}_amd64.deb
+    ar x "${XBPS_SRCDISTDIR}/${pkgname}-${version}/MullvadVPN-${version}_${_deb_arch}.deb"
     tar xf data.tar.xz -C ${wrksrc}
     mv ${wrksrc}/opt/Mullvad\ VPN ${wrksrc}/opt/MullvadVPN
 }
