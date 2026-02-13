@@ -52,6 +52,7 @@ jobs:
         if: steps.get_release.outputs.version && steps.get_release.outputs.version != steps.check_version.outputs.current_version
         run: |
           sed -i "s/^version=.*/version=${{ steps.get_release.outputs.version }}/" template
+          sed -i "s/^revision=.*/revision=1/" template
           sed -i "s/^checksum=.*/checksum=${{ steps.download.outputs.sha256 }}/" template
 
       - name: Commit and Push
