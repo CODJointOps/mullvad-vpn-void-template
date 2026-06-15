@@ -1,5 +1,5 @@
 pkgname=mullvad-vpn
-version=2026.2
+version=2026.3
 revision=1
 archs="x86_64 aarch64"
 maintainer="Wizzard <rich@bandaholics.cash>"
@@ -11,11 +11,11 @@ hostmakedepends="tar xz"
 case "${XBPS_TARGET_MACHINE}" in
     x86_64*)
         _deb_arch=amd64
-        checksum=7b027f5f1ab054b177fccb2237e019fa342874cafe2663eda5b71d5dee8734fa
+        checksum=38c6ee73ae80870688560922a28525b6d0dacc62c2e410938863d7038e931aca
         ;;
     aarch64*)
         _deb_arch=arm64
-        checksum=869b8ba430373ccae53a4175ef67f43d963e7067b68019114d60b0c30609c10a
+        checksum=a44cdbdb50923e7fd97e5cd91934892391f3dd0f8444520b83cabb57cf403754
         ;;
 esac
 
