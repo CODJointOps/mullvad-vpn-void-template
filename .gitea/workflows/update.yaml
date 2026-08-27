@@ -17,7 +17,7 @@ jobs:
         id: get_release
         run: |
           RELEASES=$(curl -s https://api.github.com/repos/mullvad/mullvadvpn-app/releases?per_page=50)
-          VERSION=$(echo "$RELEASES" | jq -r '[.[] | select(.tag_name | test("^\\d{4}\\.\\d+$"))] | sort_by(.published_at) | reverse | .[0].tag_name')
+          VERSION=$(echo "$RELEASES" | jq -r '[.[] | select(.draft == false and .prerelease == false) | select(.tag_name | test("^\\d{4}\\.\\d+$"))] | sort_by((.tag_name | sub("^[^0-9]*";"") | split("-") | .[0] | [scan("[0-9]+")] | map(tonumber)), (.tag_name | sub("^[^0-9]*";"") | split("-") | .[1:] | join(".") | [scan("[0-9]+")] | map(tonumber)), .published_at) | last | .tag_name')
           if [[ -z "$VERSION" ]]; then
             echo "No stable release found"
             exit 0
